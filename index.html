@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Växthus</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="restclient.js"></script>
+    <script>function jsSetPin(){
+        $.ajax({
+            url: "http://wiktoreriksson.se/greenhousestatus/pin?state=toggle",
+            type: "POST"
+        }).then(function(data) {
+            $('#waterflowselect').val(data.state);
+            $('#textfield-waterflow').val(data.state);
+
+        });
+
+    }</script>
+</head>
+<body>
+
+<div data-role="page" id="firstpage">
+
+    <div data-role="header" data-theme="b">
+        <h1>Växthus</h1>
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content">
+
+        <div class="ui-grid-b" style="height:140px">
+            <div class="ui-block-a" style="height:100%">
+                <h4>Vattenflöde</h4>
+                <select name="waterflowselect" id="waterflowselect" data-role="slider" onChange="jsSetPin()">
+                    <option value="off">Off</option>
+                    <option value="on">On</option>
+                </select>
+            </div>
+            <div class="ui-block-b" style="height:100%">
+                
+
+            </div>
+            <div class="ui-block-c" style="height:100%">
+                <img is="dragable"  src="grape.png"/>
+
+            </div>
+
+        </div>
+
+
+            <h4>Info</h4>
+
+            <div>
+                <p><label for="textfield-greenhousetemperature">Temperatur växthuset:</label> <input type="text" id="textfield-greenhousetemperature" value="" size="6" disabled readonly></p>
+                <p><label for="textfield-outdoortemperature">Temperatur utomhus:</label> <input type="text" id="textfield-outdoortemperature" value="" size="6" disabled readonly></p>
+                <p><label for="textfield-soilmoisture">Jordfuktighet (torr/fuktig):</label> <input type="text" id="textfield-soilmoisture" value="" size="6" disabled readonly></p>
+                <p><label for="textfield-waterflow">Bevattning (on/off):</label><input type="text" id="textfield-waterflow" value="" size="6" disabled readonly></p>
+            </div>
+
+        <p><a href="#secondpage" class="ui-btn ui-shadow ui-corner-all">Mer om projektet</a></p>
+        </div>
+
+    <div data-role="footer">
+        <center>Henrik and Wiktor Eriksson 2017 <a href="mailto:henrik.eriksson.android@gmail.com">email</a></center>
+    </div><!-- /footer -->
+</div><!-- /page -->
+<!-- Start of second page -->
+<div data-role="page" id="secondpage">
+
+    <div data-role="header" data-theme="b">
+        <h1>Växthus</h1>
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content">
+        <h4>Kort om projektet</h4>
+        <p>Vi har automatiserat vårt växthus med hjälp av mikrodatorn <a href="https://www.raspberrypi.org/">Raspberry Pi</a>, sensorer för temperatur och
+            fuktighet, egen elektronik samt en solenoid för styrning av bevattning. <br/><br/>Mjukvaran består av frontend i html5, javascript, jquery mobile och körs på apache webserver. Backend är byggt som en RESTFul microservice i Dropwizard och med java-lib:et pi4j för styrning av elektronik. Allt är driftsatt i en Raspberry pi. </p>
+        <img src="green.png"></a>
+
+
+        <p><a href="#firstpage">Tillbaks</a></p>
+    </div><!-- /content -->
+
+    <div data-role="footer">
+        <center>Henrik and Wiktor Eriksson 2017 <a href="mailto:henrik.eriksson.android@gmail.com">email</a></center>
+    </div><!-- /footer -->
+</div><!-- /page -->
+
+</body>
+</html>
