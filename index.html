@@ -19,8 +19,19 @@
             $('#textfield-waterflow').val(data.state);
 
         });
+    }
+        function jsSetAC(){
+            $.ajax({
+                url: "http://wiktoreriksson.se/greenhousestatus/fan?state=toggle",
+                type: "POST"
+            }).then(function(data) {
+                $('#fan').val(data.state);
+                $('#textfield-fan').val(data.state);
 
-    }</script>
+            });
+
+    }
+    </script>
 </head>
 <body>
 
@@ -36,6 +47,12 @@
             <div class="ui-block-a" style="height:100%">
                 <h4>Vattenflöde</h4>
                 <select name="waterflowselect" id="waterflowselect" data-role="slider" onChange="jsSetPin()">
+                    <option value="off">Off</option>
+                    <option value="on">On</option>
+                </select>
+                <br>
+                <h4>Fläkt</h4>
+                <select name="waterflowselect" id="fan" data-role="slider" onChange="jsSetAC()">
                     <option value="off">Off</option>
                     <option value="on">On</option>
                 </select>
@@ -59,6 +76,7 @@
                 <p><label for="textfield-outdoortemperature">Temperatur utomhus:</label> <input type="text" id="textfield-outdoortemperature" value="" size="6" disabled readonly></p>
                 <p><label for="textfield-soilmoisture">Jordfuktighet (torr/fuktig):</label> <input type="text" id="textfield-soilmoisture" value="" size="6" disabled readonly></p>
                 <p><label for="textfield-waterflow">Bevattning (on/off):</label><input type="text" id="textfield-waterflow" value="" size="6" disabled readonly></p>
+                <p><label for="textfield-fan">Fläkt (on/off):</label><input type="text" id="textfield-fan" value="" size="6" disabled readonly></p>
             </div>
 
         <p><a href="#secondpage" class="ui-btn ui-shadow ui-corner-all">Mer om projektet</a></p>
