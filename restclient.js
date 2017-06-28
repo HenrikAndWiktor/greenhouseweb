@@ -33,6 +33,7 @@ $(document).ready(function() {
         $('#textfield-greenhousetemperature').val(greentemp+' °C');
         $('#waterflowselect').val(data.waterflow).slider('refresh');
         $('#textfield-waterflow').val(data.waterflow);
+        $('#textfield-fan').val(data.fanstate)
 
 
 
