@@ -15,7 +15,7 @@ $(document).ready(function() {
         $('#textfield-greenhousetemperature').val(greentemp+' °C');
         $('#waterflowselect').val(data.waterflow);
         $('#textfield-waterflow').val(data.waterflow);
-        $('#textfield-fan').val(data.fanstate)
+        $('#textfield-fan').val(data.fanstate);
 
 
     });
@@ -33,7 +33,7 @@ $(document).ready(function() {
         $('#textfield-greenhousetemperature').val(greentemp+' °C');
         $('#waterflowselect').val(data.waterflow).slider('refresh');
         $('#textfield-waterflow').val(data.waterflow);
-        $('#textfield-fan').val(data.fanstate)
+        $('#textfield-fan').val(data.fanstate);
 
 
 
