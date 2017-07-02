@@ -16,7 +16,21 @@ $(document).ready(function() {
         $('#waterflowselect').val(data.waterflow);
         $('#textfield-waterflow').val(data.waterflow);
         $('#textfield-fan').val(data.fanstate);
-
+        var woff, won, foff, fon;
+        woff=document.getElementById("waterflowoff");
+        won=document.getElementById("waterflowon");
+        foff=document.getElementById("fanoff");
+        fon=document.getElementById("fanon");
+        if(data.waterflow.isEqual("on")) {
+            won.selected = true;
+        } else {
+            woff.selected = true;
+        }
+        if(data.fanstate.isEqual("on")) {
+            fon.selected = true;
+        } else {
+            foff.selected = true;
+        }
 
     });
 
@@ -51,7 +65,7 @@ $(document).ready(function() {
         }
 
     });
-    }, 10000);
+    }, 5000);
 });
 
 function round(value, precision) {
