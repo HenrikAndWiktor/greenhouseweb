@@ -21,12 +21,12 @@ $(document).ready(function() {
         won=document.getElementById("waterflowon");
         foff=document.getElementById("fanoff");
         fon=document.getElementById("fanon");
-        if(data.waterflow.isEqual("on")) {
+        if(data.waterflow=="on") {
             won.selected = true;
         } else {
             woff.selected = true;
         }
-        if(data.fanstate.isEqual("on")) {
+        if(data.fanstate=="on") {
             fon.selected = true;
         } else {
             foff.selected = true;
