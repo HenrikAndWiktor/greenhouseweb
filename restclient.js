@@ -24,7 +24,12 @@ $(document).ready(function() {
     $.ajax({
         url: "http://wiktoreriksson.se/greenhousestatus/info"
     }).then(function(data) {
-         var soil = data.soilmoisture;
+        var woff, won, foff, fon;
+        woff=document.getElementById("waterflowoff");
+        won=document.getElementById("waterflowon");
+        foff=document.getElementById("fanoff");
+        fon=document.getElementById("fanon");
+        var soil = data.soilmoisture;
         soil = soil.replace("wet", "fuktig").replace("dry", "torr");
         $('#textfield-soilmoisture').val(soil);
 	    var outtemp = round(data.outdoortemperature);
@@ -34,8 +39,16 @@ $(document).ready(function() {
         $('#waterflowselect').val(data.waterflow).slider('refresh');
         $('#textfield-waterflow').val(data.waterflow);
         $('#textfield-fan').val(data.fanstate);
-
-
+        if(data.waterflow.isEqual("on")) {
+            won.selected = true;
+        } else {
+            woff.selected = true;
+        }
+        if(data.fanstate.isEqual("on")) {
+            fon.selected = true;
+        } else {
+            foff.selected = true;
+        }
 
     });
     }, 10000);
