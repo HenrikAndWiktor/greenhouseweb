@@ -1,73 +1,47 @@
 /**
  * Created by henrikeriksson on 2017-06-21.
  */
+function updateSite() {
+    var woff, won, foff, fon;
+    woff=document.getElementById("waterflowoff");
+    won=document.getElementById("waterflowon");
+    foff=document.getElementById("fanoff");
+    fon=document.getElementById("fanon");
+    var soil = data.soilmoisture;
+    soil = soil.replace("wet", "fuktig").replace("dry", "torr");
+    $('#textfield-soilmoisture').val(soil);
+    var outtemp = round(data.outdoortemperature);
+    $('#textfield-outdoortemperature').val(outtemp+' °C');
+    var greentemp = round(data.greenhousetemperature, 1);
+    $('#textfield-greenhousetemperature').val(greentemp+' °C');
+    $('#waterflowselect').val(data.waterflow).slider('refresh');
+    $('#fanselect').val(data.fanstate).slider('refresh');
+    $('#textfield-waterflow').val(data.waterflow);
+    $('#textfield-fan').val(data.fanstate);
 
+    if(data.waterflow=="on") {
+        won.selected = true;
+    } else {
+        woff.selected = true;
+    }
+    if(data.fanstate=="on") {
+        fon.selected = true;
+    } else {
+        foff.selected = true;
+    }
+}
 $(document).ready(function() {
     $.ajax({
         url: "http://wiktoreriksson.se/greenhousestatus/info"
     }).then(function(data) {
-        var woff, won, foff, fon;
-        woff=document.getElementById("waterflowoff");
-        won=document.getElementById("waterflowon");
-        foff=document.getElementById("fanoff");
-        fon=document.getElementById("fanon");
-        var soil = data.soilmoisture;
-        soil = soil.replace("wet", "fuktig").replace("dry", "torr");
-        $('#textfield-soilmoisture').val(soil);
-        var outtemp = round(data.outdoortemperature);
-        $('#textfield-outdoortemperature').val(outtemp+' °C');
-        var greentemp = round(data.greenhousetemperature, 1);
-        $('#textfield-greenhousetemperature').val(greentemp+' °C');
-        $('#waterflowselect').val(data.waterflow).slider('refresh');
-        $('#fanselect').val(data.fanstate).slider('refresh');
-        $('#textfield-waterflow').val(data.waterflow);
-        $('#textfield-fan').val(data.fanstate);
-
-        if(data.waterflow=="on") {
-            won.selected = true;
-        } else {
-            woff.selected = true;
-        }
-        if(data.fanstate=="on") {
-            fon.selected = true;
-        } else {
-            foff.selected = true;
-        }
-
-
+        updateSite();
     });
 
     setInterval(function(){
     $.ajax({
         url: "http://wiktoreriksson.se/greenhousestatus/info"
     }).then(function(data) {
-        var woff, won, foff, fon;
-        woff=document.getElementById("waterflowoff");
-        won=document.getElementById("waterflowon");
-        foff=document.getElementById("fanoff");
-        fon=document.getElementById("fanon");
-        var soil = data.soilmoisture;
-        soil = soil.replace("wet", "fuktig").replace("dry", "torr");
-        $('#textfield-soilmoisture').val(soil);
-	    var outtemp = round(data.outdoortemperature);
-        $('#textfield-outdoortemperature').val(outtemp+' °C');
-	    var greentemp = round(data.greenhousetemperature, 1);
-        $('#textfield-greenhousetemperature').val(greentemp+' °C');
-        $('#waterflowselect').val(data.waterflow).slider('refresh');
-        $('#fanselect').val(data.fanstate).slider('refresh');
-        $('#textfield-waterflow').val(data.waterflow);
-        $('#textfield-fan').val(data.fanstate);
-
-        if(data.waterflow=="on") {
-            won.selected = true;
-        } else {
-            woff.selected = true;
-        }
-        if(data.fanstate=="on") {
-            fon.selected = true;
-        } else {
-            foff.selected = true;
-        }
+        updateSite();
 
     });
     }, 5000);
