@@ -1,7 +1,7 @@
 /**
  * Created by henrikeriksson on 2017-06-21.
  */
-function updateSite() {
+function updateSite(data) {
     var woff, won, foff, fon;
     woff=document.getElementById("waterflowoff");
     won=document.getElementById("waterflowon");
@@ -34,15 +34,14 @@ $(document).ready(function() {
     $.ajax({
         url: "http://wiktoreriksson.se/greenhousestatus/info"
     }).then(function(data) {
-        updateSite();
+        updateSite(data);
     });
 
     setInterval(function(){
     $.ajax({
         url: "http://wiktoreriksson.se/greenhousestatus/info"
     }).then(function(data) {
-        updateSite();
-
+        updateSite(data);
     });
     }, 5000);
 });
