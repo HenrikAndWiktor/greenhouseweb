@@ -14,6 +14,7 @@ $(document).ready(function() {
         var greentemp = round(data.greenhousetemperature, 1);
         $('#textfield-greenhousetemperature').val(greentemp+' °C');
         $('#waterflowselect').val(data.waterflow);
+        $('#fanselect').val(data.fanstate);
         $('#textfield-waterflow').val(data.waterflow);
         $('#textfield-fan').val(data.fanstate);
         var woff, won, foff, fon;
@@ -51,14 +52,15 @@ $(document).ready(function() {
 	    var greentemp = round(data.greenhousetemperature, 1);
         $('#textfield-greenhousetemperature').val(greentemp+' °C');
         $('#waterflowselect').val(data.waterflow).slider('refresh');
+        $('#fanselect').val(data.fanstate).slider('refresh');
         $('#textfield-waterflow').val(data.waterflow);
         $('#textfield-fan').val(data.fanstate);
-        if(data.waterflow.isEqual("on")) {
+        if(data.waterflow=="on") {
             won.selected = true;
         } else {
             woff.selected = true;
         }
-        if(data.fanstate.isEqual("on")) {
+        if(data.fanstate=="on") {
             fon.selected = true;
         } else {
             foff.selected = true;
