@@ -1,6 +1,27 @@
 /**
  * Created by henrikeriksson on 2017-06-21.
  */
+function jsSetPin(){
+    $.ajax({
+        url: "http://wiktoreriksson.se/greenhousestatus/pin?state=toggle",
+        type: "POST"
+    }).then(function(data) {
+        $('#waterflowselect').val(data.state);
+        $('#textfield-waterflow').val(data.state);
+
+    });
+}
+function jsSetAC(){
+    $.ajax({
+        url: "http://wiktoreriksson.se/greenhousestatus/fan?state=toggle",
+        type: "POST"
+    }).then(function(data) {
+        $('#fan').val(data.state);
+        $('#textfield-fan').val(data.state);
+
+    });
+
+}
 function updateSite(data) {
     var woff, won, foff, fon;
     woff=document.getElementById("waterflowoff");

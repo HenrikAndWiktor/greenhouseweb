@@ -10,28 +10,6 @@
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="restclient.js"></script>
-    <script>function jsSetPin(){
-        $.ajax({
-            url: "http://wiktoreriksson.se/greenhousestatus/pin?state=toggle",
-            type: "POST"
-        }).then(function(data) {
-            $('#waterflowselect').val(data.state);
-            $('#textfield-waterflow').val(data.state);
-
-        });
-    }
-        function jsSetAC(){
-            $.ajax({
-                url: "http://wiktoreriksson.se/greenhousestatus/fan?state=toggle",
-                type: "POST"
-            }).then(function(data) {
-                $('#fan').val(data.state);
-                $('#textfield-fan').val(data.state);
-
-            });
-
-    }
-    </script>
 </head>
 <body>
 
@@ -96,14 +74,14 @@
         <h4>Kort om projektet</h4>
         <p>Vi har automatiserat vårt växthus med hjälp av mikrodatorn <a href="https://www.raspberrypi.org/">Raspberry Pi</a>, sensorer för temperatur och
             fuktighet, egen elektronik samt en solenoid för styrning av bevattning. <br/><br/>Mjukvaran består av frontend i html5, javascript, jquery mobile och körs på apache webserver. Backend är byggt som en RESTFul microservice i Dropwizard och med java-lib:et pi4j för styrning av elektronik. Allt är driftsatt i en Raspberry pi. </p>
-        <img src="green.png"></a>
+        <img src="green.png">
 
 
         <p><a href="#firstpage">Tillbaks</a></p>
     </div><!-- /content -->
 
     <div data-role="footer">
-        <center>Henrik and Wiktor Eriksson 2017 <a href="mailto:henrik.eriksson.android@gmail.com">email</a></center>
+        <center>&copy;opy&#174;right Henrik and Wiktor Eriksson 2017 <a href="mailto:henrik.eriksson.android@gmail.com">email</a></center>
     </div><!-- /footer -->
 </div><!-- /page -->
 
