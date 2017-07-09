@@ -1,11 +1,14 @@
 /**
- * Created by henrikeriksson on 2017-06-21.
+ * Calls when waterflow slider changes. Calling AJAX POST request to http://wiktoreriksson.se/greenhousestatus/pin?state=toggle
+ * Don't call this in a browser.
  */
 function jsSetPin(){
+    //Starting AJAX
     $.ajax({
         url: "http://wiktoreriksson.se/greenhousestatus/pin?state=toggle",
         type: "POST"
     }).then(function(data) {
+        //Loading data
         $('#waterflowselect').val(data.state);
         $('#textfield-waterflow').val(data.state);
 
@@ -23,13 +26,11 @@ function jsSetAC(){
 
 }
 function updateSite(data) {
-    var woff, won, foff, fon;
-    woff=document.getElementById("waterflowoff");
-    won=document.getElementById("waterflowon");
-    foff=document.getElementById("fanoff");
-    fon=document.getElementById("fanon");
-    var soil = data.soilmoisture;
-    soil = soil.replace("wet", "fuktig").replace("dry", "torr");
+    var woff=document.getElementById("waterflowoff"),
+        won=document.getElementById("waterflowon"),
+        foff=document.getElementById("fanoff"),
+        fon=document.getElementById("fanon"),
+        soil = data.soilmoisture.replace("wet", "fuktig").replace("dry", "torr");
     $('#textfield-soilmoisture').val(soil);
     var outtemp = round(data.outdoortemperature);
     $('#textfield-outdoortemperature').val(outtemp+' °C');
@@ -54,16 +55,12 @@ function updateSite(data) {
 $(document).ready(function() {
     $.ajax({
         url: "http://wiktoreriksson.se/greenhousestatus/info"
-    }).then(function(data) {
-        updateSite(data);
-    });
+    }).then(updateSite(data));
 
     setInterval(function(){
     $.ajax({
         url: "http://wiktoreriksson.se/greenhousestatus/info"
-    }).then(function(data) {
-        updateSite(data);
-    });
+    }).then(updateSite(data));
     }, 5000);
 });
 
@@ -72,6 +69,6 @@ function round(value, precision) {
 		return "--";
 
 	}
-        var multiplier = Math.pow(10, precision || 0);
-        return Math.round(value * multiplier) / multiplier;
+    var multiplier = Math.pow(10, precision || 0);
+    return Math.round(value * multiplier) / multiplier;
 }
