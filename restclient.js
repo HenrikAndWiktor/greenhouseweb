@@ -59,12 +59,16 @@ function updateSite(data) {
 $(document).ready(function() {
     $.ajax({
         url: "http://wiktoreriksson.se/greenhousestatus/info"
-    }).then(updateSite(data));
+    }).then(function(data) {
+        updateSite(data);
+    });
 
     setInterval(function(){
     $.ajax({
         url: "http://wiktoreriksson.se/greenhousestatus/info"
-    }).then(updateSite(data));
+    }).then(function (data) {
+        updateSite(data);
+    });
     }, 5000);
 });
 
