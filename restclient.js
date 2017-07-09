@@ -11,14 +11,18 @@ function jsSetPin(){
         //Loading data
         $('#waterflowselect').val(data.state);
         $('#textfield-waterflow').val(data.state);
-
     });
-}
+}/**
+ * Calls when fan slider changes. Calling AJAX POST request to http://wiktoreriksson.se/greenhousestatus/fan?state=toggle
+ * Don't call this in a browser.
+ */
 function jsSetAC(){
+    //Starting AJAX
     $.ajax({
         url: "http://wiktoreriksson.se/greenhousestatus/fan?state=toggle",
         type: "POST"
     }).then(function(data) {
+        //Loading data
         $('#fan').val(data.state);
         $('#textfield-fan').val(data.state);
 
