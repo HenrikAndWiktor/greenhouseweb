@@ -42,9 +42,7 @@ function updateSite(data) {
     $('#textfield-greenhousetemperature').val(greentemp+' °C');
     $('#waterflowselect').val(data.waterflow).slider('refresh');
     $('#fanselect').val(data.fanstate).slider('refresh');
-    $('#textfield-waterflow').val(data.waterflow);
-    $('#textfield-fan').val(data.fanstate);
-
+    $('#textfield-watertank').val(data.watertanklevel.replace("high", "OK").replace("low", "Låg"));
     if(data.waterflow=="on") {
         won.selected = true;
     } else {
